@@ -8,12 +8,9 @@ page_header = """
 <html>
 <head>
     <title>User Signup Form</title>
-
 </head>
 <body>
-
 """
-# a form for adding new movies
 signup_form = """
 <h1>Signup</h1>
 <form method="post">
@@ -24,9 +21,7 @@ signup_form = """
     <label style="color:red;">{error_username}</label>
       </td>
     </td>
-
     </td>
-
     </tr>
     <tr>
     <td class="label">Password:</td>
@@ -48,15 +43,12 @@ signup_form = """
     <td class="error">
     <label style="color:red;">{error_email}</label>
       </td>
-
     </tr></table>
     <input type="submit" value="Submit"/>
-
 </form>
-
 """
-# html boilerplate for the bottom of every page
-page_footer = """
+welcome = """
+<h2 style="text-transform: capitalize;">Welcome, {username}!</h2>
 </body>
 </html>
 """
@@ -91,7 +83,6 @@ class MainHandler(webapp2.RequestHandler):
         password = self.request.get('password')
         verify = self.request.get('verify')
         email = self.request.get('email')
-
 
         params = dict(username = username, email = email)
 
@@ -129,24 +120,6 @@ class Welcome(webapp2.RequestHandler):
         username = self.request.get('username')
         if valid_username(username):
              self.response.write(welcome.format(username = username))
-
-#html for welcome page
-welcome = """
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>
-    User Signup
-    </title>
-</head>
-
-<body>
-<h2>Welcome, {username}!</h2>
-</body>
-</html>
-"""
-#def Welcome(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 ('/', MainHandler),
